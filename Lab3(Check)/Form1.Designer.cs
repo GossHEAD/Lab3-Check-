@@ -29,10 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.chart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.button1 = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
@@ -40,6 +41,8 @@
             this.менюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.построитьГрафикToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.очиститьГрафикToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.сохранитьДанныеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.загрузитьДанныеИзФайлаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox = new System.Windows.Forms.GroupBox();
             this.groupBoxN = new System.Windows.Forms.GroupBox();
@@ -50,50 +53,58 @@
             this.textBoxA = new System.Windows.Forms.TextBox();
             this.minChart = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.column_X = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.column_Y1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colummY2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.textBox_H = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.column_X = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.column_Y = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.groupBox.SuspendLayout();
             this.groupBoxN.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // chart
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.chart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart.Legends.Add(legend1);
             this.chart.Location = new System.Drawing.Point(6, 21);
             this.chart.Name = "chart";
-            series2.BorderWidth = 2;
+            series1.BorderWidth = 2;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series1.Color = System.Drawing.Color.Black;
+            series1.LabelBackColor = System.Drawing.Color.White;
+            series1.LabelForeColor = System.Drawing.Color.Transparent;
+            series1.Legend = "Legend1";
+            series1.LegendText = "Бернулли";
+            series1.MarkerColor = System.Drawing.Color.Black;
+            series1.Name = "Series1";
+            series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            series1.YValuesPerPoint = 4;
+            series1.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
             series2.ChartArea = "ChartArea1";
             series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series2.Color = System.Drawing.Color.Black;
-            series2.LabelBackColor = System.Drawing.Color.White;
-            series2.LabelForeColor = System.Drawing.Color.Transparent;
             series2.Legend = "Legend1";
             series2.LegendText = "Бернулли";
-            series2.Name = "Series1";
-            series2.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
-            series2.YValuesPerPoint = 4;
-            series2.YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Double;
+            series2.Name = "Series2";
+            this.chart.Series.Add(series1);
             this.chart.Series.Add(series2);
             this.chart.Size = new System.Drawing.Size(583, 416);
             this.chart.TabIndex = 0;
             this.chart.Text = "chart";
-            title2.Name = "Title1";
-            title2.Text = "Лемниската Бернулли";
-            this.chart.Titles.Add(title2);
+            title1.Name = "Title1";
+            title1.Text = "Лемниската Бернулли";
+            this.chart.Titles.Add(title1);
             // 
             // button1
             // 
@@ -120,7 +131,9 @@
             // 
             this.менюToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.построитьГрафикToolStripMenuItem,
-            this.очиститьГрафикToolStripMenuItem});
+            this.очиститьГрафикToolStripMenuItem,
+            this.сохранитьДанныеToolStripMenuItem,
+            this.загрузитьДанныеИзФайлаToolStripMenuItem});
             this.менюToolStripMenuItem.Name = "менюToolStripMenuItem";
             this.менюToolStripMenuItem.Size = new System.Drawing.Size(65, 24);
             this.менюToolStripMenuItem.Text = "Меню";
@@ -128,16 +141,30 @@
             // построитьГрафикToolStripMenuItem
             // 
             this.построитьГрафикToolStripMenuItem.Name = "построитьГрафикToolStripMenuItem";
-            this.построитьГрафикToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.построитьГрафикToolStripMenuItem.Size = new System.Drawing.Size(284, 26);
             this.построитьГрафикToolStripMenuItem.Text = "Построить график";
             this.построитьГрафикToolStripMenuItem.Click += new System.EventHandler(this.построитьГрафикToolStripMenuItem_Click);
             // 
             // очиститьГрафикToolStripMenuItem
             // 
             this.очиститьГрафикToolStripMenuItem.Name = "очиститьГрафикToolStripMenuItem";
-            this.очиститьГрафикToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.очиститьГрафикToolStripMenuItem.Size = new System.Drawing.Size(284, 26);
             this.очиститьГрафикToolStripMenuItem.Text = "Очистить график";
             this.очиститьГрафикToolStripMenuItem.Click += new System.EventHandler(this.очиститьГрафикToolStripMenuItem_Click);
+            // 
+            // сохранитьДанныеToolStripMenuItem
+            // 
+            this.сохранитьДанныеToolStripMenuItem.Name = "сохранитьДанныеToolStripMenuItem";
+            this.сохранитьДанныеToolStripMenuItem.Size = new System.Drawing.Size(284, 26);
+            this.сохранитьДанныеToolStripMenuItem.Text = "Сохранить данные";
+            this.сохранитьДанныеToolStripMenuItem.Click += new System.EventHandler(this.сохранитьДанныеToolStripMenuItem_Click);
+            // 
+            // загрузитьДанныеИзФайлаToolStripMenuItem
+            // 
+            this.загрузитьДанныеИзФайлаToolStripMenuItem.Name = "загрузитьДанныеИзФайлаToolStripMenuItem";
+            this.загрузитьДанныеИзФайлаToolStripMenuItem.Size = new System.Drawing.Size(284, 26);
+            this.загрузитьДанныеИзФайлаToolStripMenuItem.Text = "Загрузить данные из файла";
+            this.загрузитьДанныеИзФайлаToolStripMenuItem.Click += new System.EventHandler(this.загрузитьДанныеИзФайлаToolStripMenuItem_Click);
             // 
             // выходToolStripMenuItem
             // 
@@ -230,6 +257,63 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Параметры";
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.dataGridView1);
+            this.groupBox3.Location = new System.Drawing.Point(23, 225);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(327, 222);
+            this.groupBox3.TabIndex = 10;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Таблица точек";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.column_X,
+            this.column_Y1,
+            this.colummY2});
+            this.dataGridView1.Location = new System.Drawing.Point(6, 25);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(298, 185);
+            this.dataGridView1.TabIndex = 9;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // column_X
+            // 
+            this.column_X.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.column_X.Frozen = true;
+            this.column_X.HeaderText = "X";
+            this.column_X.MinimumWidth = 6;
+            this.column_X.Name = "column_X";
+            this.column_X.ReadOnly = true;
+            this.column_X.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.column_X.Width = 44;
+            // 
+            // column_Y1
+            // 
+            this.column_Y1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.column_Y1.Frozen = true;
+            this.column_Y1.HeaderText = "Y (1)";
+            this.column_Y1.MinimumWidth = 6;
+            this.column_Y1.Name = "column_Y1";
+            this.column_Y1.ReadOnly = true;
+            this.column_Y1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.column_Y1.Width = 63;
+            // 
+            // colummY2
+            // 
+            this.colummY2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.colummY2.Frozen = true;
+            this.colummY2.HeaderText = "Y (2)";
+            this.colummY2.MinimumWidth = 6;
+            this.colummY2.Name = "colummY2";
+            this.colummY2.ReadOnly = true;
+            this.colummY2.Width = 63;
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.textBox_H);
@@ -259,47 +343,6 @@
             this.label1.TabIndex = 8;
             this.label1.Text = "H (Шаг):";
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.column_X,
-            this.column_Y});
-            this.dataGridView1.Location = new System.Drawing.Point(6, 25);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(298, 185);
-            this.dataGridView1.TabIndex = 9;
-            // 
-            // column_X
-            // 
-            this.column_X.Frozen = true;
-            this.column_X.HeaderText = "X";
-            this.column_X.MinimumWidth = 6;
-            this.column_X.Name = "column_X";
-            this.column_X.ReadOnly = true;
-            this.column_X.Width = 125;
-            // 
-            // column_Y
-            // 
-            this.column_Y.Frozen = true;
-            this.column_Y.HeaderText = "Y";
-            this.column_Y.MinimumWidth = 6;
-            this.column_Y.Name = "column_Y";
-            this.column_Y.ReadOnly = true;
-            this.column_Y.Width = 125;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.dataGridView1);
-            this.groupBox3.Location = new System.Drawing.Point(23, 225);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(327, 222);
-            this.groupBox3.TabIndex = 10;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Таблица точек";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -313,6 +356,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Lab3";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chart)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -320,10 +364,10 @@
             this.groupBoxN.ResumeLayout(false);
             this.groupBoxN.PerformLayout();
             this.groupBox1.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -352,9 +396,12 @@
         private System.Windows.Forms.TextBox textBox_H;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn column_X;
-        private System.Windows.Forms.DataGridViewTextBoxColumn column_Y;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.ToolStripMenuItem сохранитьДанныеToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem загрузитьДанныеИзФайлаToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn column_X;
+        private System.Windows.Forms.DataGridViewTextBoxColumn column_Y1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colummY2;
     }
 }
 
