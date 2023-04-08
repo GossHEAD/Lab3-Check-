@@ -12,6 +12,8 @@ using System.Windows.Forms.DataVisualization.Charting;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
+using System.Reflection;
+using System.Configuration;
 
 namespace Lab3_Check_
 {
@@ -34,32 +36,47 @@ namespace Lab3_Check_
 
             try
             {
+                double x1, x2, a, h;
                 if (textBoxA.Text == "" || textBox_X1.Text == "" || textBox_X2.Text == "" || textBox_H.Text == "")
                 {
                     MessageBox.Show("Стандартные параметры!", "Внимание!");
                     DefaultParametrs();
                 }
 
-                double x1;
-                try {x1 = Convert.ToDouble(textBox_X1.Text);} 
-                catch(Exception){ MessageBox.Show("Неправильно задана левая граница");
+                
+                try { x1 = Convert.ToDouble(textBox_X1.Text); }
+                catch (Exception)
+                {
+                    MessageBox.Show("Неправильно задана левая граница");
                     return;
                 }
-                double x2;
-                try {x2 = Convert.ToDouble(textBox_X2.Text);}
-                catch (Exception){ MessageBox.Show("Неправильно задана правая граница");
+                
+                try { x2 = Convert.ToDouble(textBox_X2.Text); }
+                catch (Exception)
+                {
+                    MessageBox.Show("Неправильно задана правая граница");
                     return;
                 }
-                double a;
-                try {a = Convert.ToDouble(textBoxA.Text); 
-                    if (a == 0) throw new ArgumentException();}
-                catch (Exception){MessageBox.Show("Неправильно задан константа");
+                
+                try
+                {
+                    a = Convert.ToDouble(textBoxA.Text);
+                    if (a == 0) throw new ArgumentException();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Неправильно задан константа");
                     return;
                 }
-                double h;
-                try { h = Convert.ToDouble(textBox_H.Text); 
-                    if (h <= 0) throw new ArgumentException();}
-                catch (Exception){MessageBox.Show("Неправильно задан шаг");
+                
+                try
+                {
+                    h = Convert.ToDouble(textBox_H.Text);
+                    if (h <= 0) throw new ArgumentException();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Неправильно задан шаг");
                     return;
                 }
 
@@ -70,53 +87,29 @@ namespace Lab3_Check_
                     this.chart.Series[0].Points.Clear();
                 }
 
-                
 
+                List<double> points = new List<double>();
                 for (double x = x1; x <= x2; x += h)
                 {
                     double y = Math.Sqrt(Math.Sqrt(Math.Pow(a, 4) + 4 * a * a * x * x) - x * x - a * a);
-                    // List<double> y_num = new List<double>() {y};
 
-                    if (y.ToString() != "" && !double.IsNaN(y))
+                    if (!(double.IsNaN(y)))
                     {
-                        dataGridView1.Rows.Add(x, y, (-y));
+                        dataGridView1.Rows.Add(Math.Round(x, 2), Math.Round(y, 2), Math.Round(-y, 2));
+                        points.Add(x);
                     }
-                    /*
-                    foreach (DataGridViewRow row in dataGridView1.Rows)
-                    {
-                        
-                        if (double.IsNaN((double)row.Cells[0].Value))
-                        {
-                            
-                            dataGridView1.Rows.Remove(row);
-                            break;
-                        }
-                    }
-                    */
-                    //this.chart.Series[0].Points[0].SetValueY(y);
-                    this.chart.Series[0].Points.AddXY(x, y);
-                    this.chart.Series[1].Points.AddXY(x, -y); 
                     
-                    /*
-                    for (int i = dataGridView1.Rows.Count - 1; i >= 0; i--)
-                    {
-                        DataGridViewRow row = dataGridView1.Rows[i];
-                        bool isEmpty = true;
-                        foreach (DataGridViewCell cell in row.Cells)
-                        {
-                            if(cell.Value != null || cell.Value.ToString() != "")
-                            {
-                               isEmpty = false; break;
-                            }
-                        }
-                        if (isEmpty)
-                        {
-                            dataGridView1.Rows.Remove(row);
-                        }
-                    }
-                    */
-
+                    
+                    this.chart.Series[0].Points.AddXY(x, y);
+                    this.chart.Series[1].Points.AddXY(x, -y);
                 }
+                double x_max = points.Max();
+                double x_min = points.Min();
+                this.chart.Series[0].Points.AddY(x_max);
+                this.chart.Series[1].Points.AddY(x_min);
+                
+
+
             }
             catch (Exception g)
             {
@@ -145,9 +138,6 @@ namespace Lab3_Check_
             
 
         }
-
-
-
         private void загрузитьДанныеИзФайлаToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
@@ -233,14 +223,11 @@ namespace Lab3_Check_
             }
         }
     
-
-
         private void очиститьГрафикToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.chart.Series[0].Points.Clear();
             this.chart.Series[1].Points.Clear();
-            //Form2 newForm2 = new Form2();
-            //newForm2.Show();
+            
         }
 
         private void выходToolStripMenuItem_Click(object sender, EventArgs e)
@@ -250,7 +237,6 @@ namespace Lab3_Check_
                 Application.Exit();
             }
         }
-
         private void DefaultParametrs()
         {
             double x1 = -10;
@@ -258,15 +244,30 @@ namespace Lab3_Check_
             double a = 4.0; 
             double h = 1;
         }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+       
+        private void вклОтклПриветсвияToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            bool showGreetingOn;
 
-        }
+            var file = new StreamReader("ShowGreeting");
+            string stringShowGreetingOn = file.ReadLine();
+            showGreetingOn = Convert.ToBoolean(stringShowGreetingOn);
+            file.Close();
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            MessageBox.Show("Выполнил Богданов А.Е, 414 группа, вариант 4", "Здравствуйте!", MessageBoxButtons.OK);
+            if (showGreetingOn)
+            {
+                var file1 = new StreamWriter("ShowGreeting", false);
+                showGreetingOn = false;
+                file1.WriteLine(showGreetingOn);
+                file1.Close();
+            }
+            else
+            {
+                var file2 = new StreamWriter("ShowGreeting", false);
+                showGreetingOn = true;
+                file2.WriteLine(showGreetingOn);
+                file2.Close();
+            }
         }
     }
 }
